@@ -1,17 +1,14 @@
 class PromotionBase
-  attr_reader :items, :total
+  attr_reader :items, :current_total
 
-  def initialize(items)
+  def initialize(items, current_total = nil)
     @items = items
-  end
-
-  def total
-    @total = raw_total
+    @current_total = current_total || raw_total
   end
 
   private
 
   def raw_total
-    items.map(&:price).inject(0, :+)
+    @items.map(&:price).inject(0, :+)
   end
 end

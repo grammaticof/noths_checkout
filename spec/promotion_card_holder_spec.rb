@@ -7,7 +7,7 @@ describe PromotionCardHolder do
         [Item.new('001'), Item.new('002'), Item.new('001')]
       end
 
-      it 'returns 1.50 discount'  do
+      it 'returns 1.50 discount' do
         promotion = PromotionCardHolder.new(items)
         expect(promotion.calculate).to eq 1.50
       end

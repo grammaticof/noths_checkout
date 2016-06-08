@@ -1,5 +1,3 @@
-require_relative './item'
-
 class PromotionCardHolder < PromotionBase
   ITEM_CODE = '001'.freeze # Travel Card Holder
   ITEM_MIN = 2
@@ -9,11 +7,11 @@ class PromotionCardHolder < PromotionBase
     items_to_discount.size >= ITEM_MIN ? discount : 0
   end
 
+  private
+
   def items_to_discount
     @items_to_discount ||= items.select { |item| item.code == ITEM_CODE }
   end
-
-  private
 
   def discount
     total_old_price - total_new_price
