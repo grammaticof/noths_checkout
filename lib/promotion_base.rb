@@ -3,12 +3,6 @@ class PromotionBase
 
   def initialize(items, current_total = nil)
     @items = items
-    @current_total = current_total || raw_total
-  end
-
-  private
-
-  def raw_total
-    @items.map(&:price).inject(0, :+)
+    @current_total = current_total
   end
 end

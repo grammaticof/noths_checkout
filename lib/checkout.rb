@@ -1,8 +1,7 @@
 require 'money'
 
 class Checkout
-  attr_accessor :items
-  attr_reader :promotional_rules
+  attr_reader :items, :promotional_rules
   DEFAULT_CURRENCY = 'GBP'.freeze
 
   def initialize(promotional_rules)
@@ -15,15 +14,7 @@ class Checkout
   end
 
   def unscan(code)
-    unscan_index = nil
-
-    @items.each_with_index do |item, index|
-      if item.code == code
-        unscan_index = index
-        break
-      end
-    end
-
+    unscan_index = @items.index { |item| item.code == code }
     @items.delete_at(unscan_index) if unscan_index
   end
 
@@ -33,18 +24,14 @@ class Checkout
 
   private
 
-  def raw_total
-    @items.map(&:price).inject(0, :+)
-  end
-
   def discounted_total
-    total_discount = raw_total
+    discounted = @items.map(&:price).inject(0, :+)
 
     promotional_rules.each do |promotional_rule|
-      promotion = promotional_rule.new(@items, total_discount)
-      total_discount -= promotion.calculate
+      promotion = promotional_rule.new(@items, discounted)
+      discounted -= promotion.calculate
     end
 
-    total_discount
+    discounted
   end
 end
