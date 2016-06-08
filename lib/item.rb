@@ -1,11 +1,10 @@
 class Item
-  attr_reader :name, :code, :currency
+  attr_reader :name, :code, :price
 
   def initialize(code)
     @code = code
     @name = product[:name]
     @price = product[:price]
-    @currency = product[:currency]
   end
 
   private
