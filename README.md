@@ -1,16 +1,18 @@
-notonthehighstreet.com is an online marketplace, here is a sample of
+### TEST
 
-some of the products available on our site:
+Notonthehighstreet.com is an online marketplace, here is a sample of some of the products available on our site:
 
+
+```
 Product code | Name | Price
-
-----------------------------------------------------------
+-------------------------------------------
 
 001 | Travel Card Holder | £9.25
 
 002 | Personalised cufflinks | £45.00
 
 003 | Kids T-shirt | £19.95
+```
 
 Our marketing team want to offer promotions as an incentive for
 
@@ -29,7 +31,7 @@ promotions will change, it needs to be flexible regarding our
 promotional rules.
 
 The interface to our checkout looks like this (shown in Ruby):
-
+```ruby
 co = Checkout.new(promotional_rules)
 
 co.scan(item)
@@ -37,11 +39,12 @@ co.scan(item)
 co.scan(item)
 
 price = co.total
-
+```
 Implement a checkout system that fulfills these requirements.
 
-Test data
 
+```
+Test data
 ---------
 
 Basket: 001,002,003
@@ -55,3 +58,4 @@ Total price expected: £36.95
 Basket: 001,002,001,003
 
 Total price expected: £73.76
+```
